@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <string.h>
+#include "jitter.h"
 
 #define NSECS_PER_SEC 1000000000
 
@@ -70,7 +71,7 @@ void writeJitter(jitter_t *jitter, char *path)
 	if (f != NULL) {
 		for (i = JITTER_SAMPLE_COUNT-1 ; i >= 0 ; i--) {
 			if (jitter->samples[i] > 0) {
-				fprintf("%ld\n", jitter->samples[i]);
+				fprintf(f, "%ld\n", jitter->samples[i]);
 			}
 		}
 		fclose(f);
